@@ -43,8 +43,8 @@ class Environment:
                     raw+=[Back.RED + '  ']
                 if(self.Map[i][j][1]=='blue'):
                     raw+=[Back.BLUE + '  ']
-                if(self.Map[i][j][1]=='cyan'):
-                    raw+=[Back.CYAN + '  ']
+                if(self.Map[i][j][1]=='black'):
+                    raw+=[Back.BLACK + '  ']
                 if(self.Map[i][j][1]=='yellow'):
                     raw+=[Back.YELLOW + '  ']
             print "".join(raw)
@@ -53,7 +53,7 @@ class Environment:
         for i in range(0, len(self.Map)):
             temp=[]
             for j in range(0, len(self.Map[i])):
-                temp+=[s[i]]
+                temp+=[self.Map[i][j][0]]
             L+=[temp]
             
         return L
@@ -64,7 +64,7 @@ class Environment:
         elif(obj=="unexplored"):
             self.Map[coordinates[0]][coordinates[1]][1]="white"
         elif(obj=="start"):
-            self.Map[coordinates[0]][coordinates[1]][1]="cyan"
+            self.Map[coordinates[0]][coordinates[1]][1]="black"
         elif(obj=="target"):
             self.Map[coordinates[0]][coordinates[1]][1]="yellow"
         elif(obj=="explored"):
