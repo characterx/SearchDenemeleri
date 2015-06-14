@@ -1,12 +1,14 @@
 from colorama import *
 
 class Environment:
+    cleanMap=[]
     
     def __init__(self, A, B):
         self.start=A
         self.target=B
         init(autoreset=True)
         self.Map=[]
+        cleanMap=self.giveEnvironmentList()
     def readEnvironment(self):
         outfile = open("map.txt", "r")
         s=outfile.read()
@@ -56,6 +58,7 @@ class Environment:
                 temp+=[self.Map[i][j][0]]
             L+=[temp]
             
+        self.cleanMap=L
         return L
                 
     def setColor(self,coordinates, obj):
@@ -73,6 +76,25 @@ class Environment:
             self.Map[coordinates[0]][coordinates[1]][1]="red"
             
         
+    def actions(self, coord):
+        R=[]
+        x=coord[0]
+        y=coord[1]
+        n=len(self.cleanMap)
+        m=len(self.cleanMap[0])
+        if(y+1<m and self.cleanMap[x][y+1]!='#'):
+            R+=[[x, y+1]]
+        
+        if(x+1<n and self.cleanMap[x+1][y]!='#'):
+            R+=[[x+1, y]]
+        
+        if(y-1>=0 and self.cleanMap[x][y-1]!='#'):
+            R+=[[x, y-1]]
+        
+        if(x-1>=0 and self.cleanMap[x-1][y]!='#'):
+            R+=[[x-1, y]]
+            
+        return R
     
         
     
